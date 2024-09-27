@@ -1,0 +1,74 @@
+CREATE DATABASE assignment_db;
+USE assignment_db;
+
+CREATE TABLE sales (
+    product_id INT,
+    date DATE,
+    revenue DECIMAL(10, 2)
+);
+
+INSERT INTO sales (product_id, date, revenue) VALUES
+(1, '2023-09-01', 1000.00),
+(2, '2023-09-05', 800.00),
+(3, '2023-09-10', 1500.00),
+(4, '2023-09-15', 500.00),
+(1, '2023-09-20', 1200.00),
+(2, '2023-09-25', 700.00),
+(3, '2023-09-30', 1800.00),
+(4, '2023-09-30', 300.00),
+(1, '2023-09-30', 1300.00);
+
+CREATE TABLE employee_salary (
+    employee_id INT,
+    department_id INT,
+    salary DECIMAL(10, 2)
+);
+
+INSERT INTO employee_salary (employee_id, department_id, salary) VALUES
+(1, 101, 5000.00),
+(2, 102, 6000.00),
+(3, 101, 5500.00),
+(4, 103, 7000.00),
+(5, 102, 6200.00),
+(6, 103, 6800.00),
+(7, 101, 5400.00);
+
+CREATE TABLE monthly_sales (
+    year INT,
+    month INT,
+    total_sales DECIMAL(10, 2),
+    region VARCHAR(50)
+);
+
+INSERT INTO monthly_sales (year, month, total_sales, region) VALUES
+(2023, 1, 2000.00, 'North'),
+(2023, 1, 3000.00, 'South'),
+(2023, 2, 2500.00, 'North'),
+(2023, 2, 3500.00, 'South'),
+(2023, 3, 4000.00, 'North'),
+(2023, 3, 3200.00, 'South'),
+(2024, 1, 2200.00, 'North'),
+(2024, 1, 3100.00, 'South');
+
+CREATE TABLE employees (
+    employee_id INT,
+    department_id INT,
+    salary DECIMAL(10, 2)
+);
+
+CREATE TABLE departments (
+    department_id INT,
+    department_name VARCHAR(50)
+);
+
+INSERT INTO employees (employee_id, department_id, salary) VALUES
+(1, 101, 5200.00),
+(2, 102, 6200.00),
+(3, 103, 7100.00),
+(4, 101, 5000.00),
+(5, 102, 6400.00);
+
+INSERT INTO departments (department_id, department_name) VALUES
+(101, 'HR'),
+(102, 'Finance'),
+(103, 'Engineering');
