@@ -1,0 +1,77 @@
+CREATE TABLE departments (
+    department_id SERIAL PRIMARY KEY,
+    budget NUMERIC(15, 2)
+);
+
+-- Step 2: Create Employees table, referencing the Departments table.
+CREATE TABLE employees (
+    employee_id SERIAL PRIMARY KEY,
+    department_id INTEGER REFERENCES departments(department_id),
+    hourly_rate NUMERIC(10, 2)
+);
+
+-- Step 3: Create Projects table, also referencing the Departments table.
+CREATE TABLE projects (
+    project_id SERIAL PRIMARY KEY,
+    department_id INTEGER REFERENCES departments(department_id),
+    total_hours_allocated INTEGER
+);
+
+-- Step 4: Create Employee Projects table, referencing Employees and Projects tables.
+CREATE TABLE employee_projects (
+    employee_project_id SERIAL PRIMARY KEY,
+    employee_id INTEGER REFERENCES employees(employee_id),
+    project_id INTEGER REFERENCES projects(project_id),
+    hours_worked INTEGER
+);
+
+-- Sample records for Departments
+INSERT INTO departments (budget) VALUES 
+(1000000.00),  -- IT Department
+(750000.00),   -- HR Department
+(500000.00),   -- Sales Department
+(900000.00);   -- Operations Department
+
+-- Sample records for Employees
+INSERT INTO employees (department_id, hourly_rate) VALUES 
+(1, 5000.00),  -- Employee in IT
+(2, 3000.00),  -- Employee in HR
+(3, 4000.00),  -- Employee in Sales
+(1, 4500.00),  -- Another employee in IT
+(4, 3500.00);  -- Employee in Operations
+
+-- Sample records for Projects
+INSERT INTO projects (department_id, total_hours_allocated) VALUES 
+(1, 2000),  -- IT Project
+(2, 1500),  -- HR Project
+(3, 800),   -- Sales Project
+(4, 1000);  -- Operations Project
+
+-- Sample records for Employee Projects
+INSERT INTO employee_projects (employee_id, project_id, hours_worked) VALUES 
+(1, 1, 500),   -- IT employee working on IT project
+(2, 2, 400),   -- HR employee working on HR project
+(3, 3, 300),   -- Sales employee working on Sales project
+(4, 1, 600),   -- IT employee working on another IT project
+(5, 4, 350);   -- Operations employee working on Operations project
+WITH RECURSIVE employee_hours AS (
+    SELECT 
+        ep.employee_id,
+        SUM(ep.hours_worked) / 4.0 AS average_weekly_hours
+    FROM 
+        employee_projects ep
+    JOIN 
+        projects p ON ep.project_id = p.project_id
+    WHERE
+        ep.hours_worked IS NOT NULL  -- Ensures valid data
+    GROUP BY 
+        ep.employee_id
+)
+SELECT 
+    eh.employee_id,
+    eh.average_weekly_hours
+FROM 
+    employee_hours eh
+WHERE 
+    eh.average_weekly_hours > 40;
+15:26

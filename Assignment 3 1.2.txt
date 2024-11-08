@@ -1,0 +1,83 @@
+-- Customers table
+CREATE TABLE customers (
+    customer_id SERIAL PRIMARY KEY,
+    city VARCHAR(50),
+    state VARCHAR(50)
+);
+
+-- Products table
+CREATE TABLE products (
+    product_id SERIAL PRIMARY KEY,
+    category VARCHAR(50),
+    price NUMERIC(10, 2),
+    stock_quantity INTEGER
+);
+
+-- Orders table
+CREATE TABLE orders (
+    order_id SERIAL PRIMARY KEY,
+    customer_id INTEGER REFERENCES customers(customer_id),
+    order_date TIMESTAMP
+);
+
+-- Order Items table
+CREATE TABLE order_items (
+    order_item_id SERIAL PRIMARY KEY,
+    order_id INTEGER REFERENCES orders(order_id),
+    product_id INTEGER REFERENCES products(product_id),
+    quantity INTEGER
+);
+-- Sample records for customers (based in various Kazakh cities)
+INSERT INTO customers (city, state) VALUES 
+('Almaty', 'Almaty Region'), 
+('Astana', 'Akmola Region'), 
+('Shymkent', 'Turkistan Region'), 
+('Karaganda', 'Karaganda Region'),
+('Aktau', 'Mangystau Region');
+
+-- Sample records for products (relevant categories in Kazakhstan)
+INSERT INTO products (category, price, stock_quantity) VALUES
+('Electronics', 45000.00, 150),  -- Example: smartphone
+('Home Appliances', 85000.00, 75),  -- Example: refrigerator
+('Furniture', 120000.00, 40),  -- Example: sofa
+('Clothing', 20000.00, 200),  -- Example: jacket
+('Sporting Goods', 35000.00, 60);  -- Example: bicycle
+
+-- Sample records for orders (varied dates for order data)
+INSERT INTO orders (customer_id, order_date) VALUES
+(1, '2024-09-01 14:30:00'),
+(2, '2024-09-02 10:00:00'),
+(3, '2024-09-02 16:45:00'),
+(4, '2024-09-03 12:20:00'),
+(5, '2024-09-04 15:15:00');
+
+-- Sample records for order_items (quantities ordered per product)
+INSERT INTO order_items (order_id, product_id, quantity) VALUES
+(1, 1, 2),  -- 2 Electronics (e.g., smartphones)
+(1, 4, 1),  -- 1 Clothing item (e.g., jacket)
+(2, 2, 1),  -- 1 Home Appliance (e.g., refrigerator)
+(3, 3, 2),  -- 2 Furniture items (e.g., chairs)
+(3, 5, 1),  -- 1 Sporting Goods item (e.g., bicycle)
+(4, 1, 1),  -- 1 Electronics item (e.g., smartphone)
+(5, 4, 3);  -- 3 Clothing items (e.g., jackets)
+SELECT 
+    category,
+    customer_id,
+    total_spent
+FROM (
+    SELECT 
+        p.category,
+        o.customer_id,
+        SUM(oi.quantity * p.price) AS total_spent,
+        RANK() OVER (PARTITION BY p.category ORDER BY SUM(oi.quantity * p.price) DESC) AS rank
+    FROM 
+        order_items oi
+    JOIN 
+        products p ON oi.product_id = p.product_id
+    JOIN 
+        orders o ON oi.order_id = o.order_id
+    GROUP BY 
+        p.category, o.customer_id
+) AS ranked_spending
+WHERE 
+    rank = 1;
