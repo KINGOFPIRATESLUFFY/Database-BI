@@ -1,0 +1,79 @@
+CREATE TABLE netflix (
+    show_id VARCHAR(10) PRIMARY KEY,
+    type VARCHAR(10),
+    title VARCHAR(255),
+    director VARCHAR(255),
+    country VARCHAR(255),
+    date_added DATE,
+    release_year INT,
+    rating VARCHAR(10),
+    duration VARCHAR(50),
+    listed_in VARCHAR(255)
+);
+
+INSERT INTO netflix (show_id, type, title, director, country, date_added, release_year, rating, duration, listed_in) VALUES
+('s1', 'Movie', 'Dick Johnson Is Dead', 'Kirsten Johnson', 'United States', '2021-09-25', 2020, 'PG-13', '90 min', 'Documentaries'),
+('s3', 'TV Show', 'Ganglands', 'Julien Leclercq', 'France', '2021-09-24', 2021, 'TV-MA', '1 Season', 'Crime TV Shows, International TV Shows, TV Action & Adventure'),
+('s6', 'TV Show', 'Midnight Mass', 'Mike Flanagan', 'United States', '2021-09-24', 2021, 'TV-MA', '1 Season', 'TV Dramas, TV Horror, TV Mysteries'),
+('s14', 'Movie', 'Confessions of an Invisible Girl', 'Bruno Garotti', 'Brazil', '2021-09-22', 2021, 'TV-PG', '91 min', 'Children & Family Movies, Comedies'),
+('s8', 'Movie', 'Sankofa', 'Haile Gerima', 'United States', '2021-09-24', 1993, 'TV-MA', '125 min', 'Dramas, Independent Movies, International Movies'),
+('s15', 'TV Show', 'The Crown', 'Peter Morgan', 'United Kingdom', '2020-11-15', 2016, 'TV-MA', '4 Seasons', 'TV Dramas, British TV Shows'),
+('s16', 'Movie', 'The Irishman', 'Martin Scorsese', 'United States', '2019-11-27', 2019, 'R', '209 min', 'Dramas, Crime Movies'),
+('s17', 'TV Show', 'Stranger Things', 'The Duffer Brothers', 'United States', '2016-07-15', 2016, 'TV-14', '4 Seasons', 'TV Dramas, TV Sci-Fi & Fantasy, Teen TV Shows'),
+('s18', 'Movie', 'Bird Box', 'Susanne Bier', 'United States', '2018-12-21', 2018, 'R', '124 min', 'Thrillers, Sci-Fi Movies'),
+('s19', 'TV Show', 'Dark', 'Baran bo Odar', 'Germany', '2017-12-01', 2017, 'TV-MA', '3 Seasons', 'TV Dramas, TV Sci-Fi & Fantasy, International TV Shows'),
+('s20', 'Movie', 'Roma', 'Alfonso Cuarón', 'Mexico', '2018-12-14', 2018, 'R', '135 min', 'Dramas, Independent Movies, International Movies'),
+('s21', 'TV Show', 'Money Heist', 'Álex Pina', 'Spain', '2017-05-02', 2017, 'TV-MA', '5 Seasons', 'Crime TV Shows, International TV Shows, TV Thrillers'),
+('s22', 'Movie', 'Marriage Story', 'Noah Baumbach', 'United States', '2019-12-06', 2019, 'R', '137 min', 'Dramas, Independent Movies'),
+('s23', 'Movie', 'Extraction', 'Sam Hargrave', 'United States', '2020-04-24', 2020, 'R', '117 min', 'Action & Adventure'),
+('s24', 'TV Show', 'The Witcher', 'Lauren Schmidt Hissrich', 'United States', '2019-12-20', 2019, 'TV-MA', '2 Seasons', 'TV Action & Adventure, TV Dramas, TV Sci-Fi & Fantasy'),
+('s25', 'Movie', 'Enola Holmes', 'Harry Bradbeer', 'United Kingdom', '2020-09-23', 2020, 'PG-13', '123 min', 'Family Features, Dramas, Mysteries'),
+('s26', 'Movie', 'The Social Dilemma', 'Jeff Orlowski', 'United States', '2020-09-09', 2020, 'PG-13', '94 min', 'Documentaries'),
+('s27', 'TV Show', 'Breaking Bad', 'Vince Gilligan', 'United States', '2008-01-20', 2008, 'TV-MA', '5 Seasons', 'TV Dramas, Crime TV Shows'),
+('s28', 'Movie', 'The Two Popes', 'Fernando Meirelles', 'United Kingdom', '2019-11-27', 2019, 'PG-13', '125 min', 'Dramas, Independent Movies'),
+('s29', 'Movie', 'El Camino: A Breaking Bad Movie', 'Vince Gilligan', 'United States', '2019-10-11', 2019, 'TV-MA', '122 min', 'Crime Movies, Dramas'),
+('s30', 'TV Show', 'The Umbrella Academy', 'Steve Blackman', 'United States', '2019-02-15', 2019, 'TV-14', '3 Seasons', 'TV Action & Adventure, TV Dramas, TV Sci-Fi & Fantasy'),
+('s31', 'Movie', 'The King', 'David Michôd', 'United Kingdom', '2019-11-01', 2019, 'R', '140 min', 'Dramas, International Movies'),
+('s32', 'Movie', 'Klaus', 'Sergio Pablos', 'Spain', '2019-11-15', 2019, 'PG', '97 min', 'Family Features, Children & Family Movies, Comedies'),
+('s33', 'TV Show', 'Narcos', 'Chris Brancato', 'United States', '2015-08-28', 2015, 'TV-MA', '3 Seasons', 'Crime TV Shows, TV Dramas'),
+('s34', 'Movie', 'The Platform', 'Galder Gaztelu-Urrutia', 'Spain', '2019-11-08', 2019, 'TV-MA', '94 min', 'Thrillers, Sci-Fi Movies, International Movies'),
+('s35', 'Movie', 'The Half of It', 'Alice Wu', 'United States', '2020-05-01', 2020, 'PG-13', '104 min', 'Comedies, Dramas, LGBTQ Movies'),
+('s36', 'TV Show', 'The Queen’s Gambit', 'Scott Frank', 'United States', '2020-10-23', 2020, 'TV-MA', '1 Season', 'TV Dramas'),
+('s37', 'Movie', 'Da 5 Bloods', 'Spike Lee', 'United States', '2020-06-12', 2020, 'R', '154 min', 'Action & Adventure, Dramas'),
+('s38', 'Movie', 'Project Power', 'Henry Joost', 'United States', '2020-08-14', 2020, 'R', '113 min', 'Action & Adventure, Sci-Fi Movies, Thrillers'),
+('s39', 'TV Show', 'Ozark', 'Bill Dubuque', 'United States', '2017-07-21', 2017, 'TV-MA', '4 Seasons', 'TV Dramas, Crime TV Shows');
+
+-- Count the total number of movies and TV shows
+SELECT type, COUNT(*) AS total_count
+FROM netflix
+GROUP BY type;
+
+-- Find the most common content rating
+SELECT rating, COUNT(*) AS frequency
+FROM netflix
+GROUP BY rating
+ORDER BY frequency DESC
+LIMIT 1;
+
+-- List all titles added in 2021
+SELECT title
+FROM netflix
+WHERE EXTRACT(YEAR FROM date_added) = 2021;
+
+-- Count content by country
+SELECT country, COUNT(*) AS content_count
+FROM netflix
+GROUP BY country
+ORDER BY content_count DESC;
+
+-- Find the longest duration of movies
+SELECT title, duration
+FROM netflix
+WHERE type = 'Movie'
+ORDER BY CAST(SPLIT_PART(duration, ' ', 1) AS INTEGER) DESC
+LIMIT 1;
+
+-- List all TV shows in the Drama genre
+SELECT title
+FROM netflix
+WHERE type = 'TV Show' AND listed_in LIKE '%Drama%';
